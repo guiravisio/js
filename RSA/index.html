@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Implementação RSA</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+        <script src="math.js" type="text/javascript"></script>
+
+    </head>
+
+    <body>
+        
+        <h1>Implementação RSA</h>
+        <br><br>
+        <div class="">
+            <div class="">
+                <p>A variável P é igual a: </p>
+                <p id="p" > </p>
+            </div>
+        </div>
+        <div class="">
+            <div class="">
+                <p>A variável Q é igual a: </p>
+                <p id="q" > </p>
+            </div>
+        </div>
+        <div class=" ">
+            <div class=" ">
+                <p>A variável N é igual a: </p>
+                <p id="n" > </p>
+            </div>
+        </div>
+        <div class=" ">
+            <div class=" ">
+                <p>A variável Z é igual a: </p>
+                <p id="z" > </p>
+            </div>
+        </div>
+        <div class=" ">
+            <div class=" ">
+                <p>A variável D é igual a: </p>
+                <p id="d" > </p>
+            </div>
+        </div>
+            <button onclick="geraRandom()" > Gerar novos</button>
+
+        <form id="rsa" action="/action_page.php">
+            Criptografar: <input type="text" name="cript"><br>
+            <input type="button" onclick="cript()" value="Calcular"><br>
+            Descriptografar: <input type="text" name="descript"><br>
+            <input type="button" onclick="descript()" value="Calcular"><br>
+        </form>
+        <!--https://www.claritician.com/a-simple-implementation-of-the-rsa-algorithm-in-javascript-->
+
+    <script>
+        var primos = [ 59n, 61n, 67n, 71n, 73n, 79n, 83n];
+        var p = 0n;
+        var q = 0n;
+        var n = 0n;
+        var z = 0n;
+        var d = 0n;
+        document.getElementById("p").innerHTML = p;
+        document.getElementById("q").innerHTML = q;
+        document.getElementById("n").innerHTML = n;
+        document.getElementById("z").innerHTML = z;
+        document.getElementById("d").innerHTML = d;
+        
+        function random(primos){
+            return primos[Math.floor(Math.random()*primos.length)];
+        }
+
+        function geraRandom(){
+            var p = random(primos);
+            var q = random(primos);
+            document.getElementById("p").innerHTML = p;
+            document.getElementById("q").innerHTML = q;
+            var n = p * q;
+            document.getElementById("n").innerHTML = n;
+            var z = (p - 1n) * (q - 1n);
+            document.getElementById("z").innerHTML = z;
+            
+            /*var d = retornaCoprimo(13n, z);*/
+            document.getElementById("d").innerHTML = retornaCoprimo(13n, z);
+        }
+     
+        
+        function retornaCoprimo(x, y) {
+            
+            while (math.gcd(x, y) !== 1) {
+                x = x + 2n;
+            }
+
+            return x;
+        }
+        
+        
+
+       
+        
+        
+    </script>
+        
+    </body>
+
+</html>
